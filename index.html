@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Slow Heart ❤️</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #030005;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----------------------------------
+   MAIN CONTAINER
+---------------------------------- */
+
+.scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #18000f 0%,
+            #090009 45%,
+            #020003 100%
+        );
+}
+
+/* ----------------------------------
+   BACKGROUND GLOW
+---------------------------------- */
+
+.glow {
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    left: 50%;
+    top: 47%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 20, 90, 0.12),
+            transparent 68%
+        );
+
+    filter: blur(20px);
+
+    animation: backgroundPulse 2.2s infinite ease-in-out;
+}
+
+@keyframes backgroundPulse {
+
+    0%,100% {
+        transform: translate(-50%, -50%) scale(0.9);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* ----------------------------------
+   CANVAS
+---------------------------------- */
+
+canvas {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    left: 0;
+    top: 0;
+}
+
+/* ----------------------------------
+   HEART
+---------------------------------- */
+
+.heart-container {
+
+    position: absolute;
+
+    left: 50%;
+    top: 45%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    width: 260px;
+    height: 260px;
+
+    animation:
+        heartAppear 2s
+        cubic-bezier(.17,.67,.32,1.4)
+        forwards;
+
+    animation-delay: 0.5s;
+}
+
+.heart {
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    left: 55px;
+    top: 55px;
+
+    transform: rotate(-45deg);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1744,
+            #ff2975,
+            #ff0055
+        );
+
+    box-shadow:
+
+        0 0 15px #ff1744,
+        0 0 35px rgba(255, 23, 68, .8),
+        0 0 70px rgba(255, 23, 68, .5),
+        0 0 120px rgba(255, 23, 68, .25);
+
+    animation:
+        heartbeat 2.2s
+        infinite
+        ease-in-out;
+}
+
+.heart::before,
+.heart::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background: inherit;
+}
+
+.heart::before {
+    top: -75px;
+    left: 0;
+}
+
+.heart::after {
+    left: 75px;
+    top: 0;
+}
+
+/* ----------------------------------
+   HEART OUTLINE
+---------------------------------- */
+
+.heart-outline {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 175px;
+    height: 175px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-45deg);
+
+    border-left: 2px solid rgba(255,255,255,.35);
+    border-bottom: 2px solid rgba(255,255,255,.35);
+
+    filter:
+        drop-shadow(0 0 10px #ff4f91);
+
+    opacity: .6;
+
+    animation:
+        outlinePulse 2.2s
+        infinite
+        ease-in-out;
+}
+
+.heart-outline::before,
+.heart-outline::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 175px;
+    height: 175px;
+
+    border-radius: 50%;
+
+    border-top: 2px solid rgba(255,255,255,.35);
+}
+
+.heart-outline::before {
+    top: -87px;
+    left: 0;
+}
+
+.heart-outline::after {
+    left: 87px;
+    top: 0;
+}
+
+@keyframes heartAppear {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes heartbeat {
+
+    0%, 38%, 100% {
+        transform:
+            rotate(-45deg)
+            scale(1);
+    }
+
+    42% {
+        transform:
+            rotate(-45deg)
+            scale(1.08);
+    }
+
+    47% {
+        transform:
+            rotate(-45deg)
+            scale(.98);
+    }
+
+    52% {
+        transform:
+            rotate(-45deg)
+            scale(1.13);
+    }
+
+    60% {
+        transform:
+            rotate(-45deg)
+            scale(1);
+    }
+}
+
+@keyframes outlinePulse {
+
+    0%,100% {
+        transform:
+            translate(-50%, -50%)
+            rotate(-45deg)
+            scale(1);
+        opacity: .35;
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            rotate(-45deg)
+            scale(1.16);
+        opacity: .8;
+    }
+}
+
+/* ----------------------------------
+   TEXT
+---------------------------------- */
+
+.title {
+
+    position: absolute;
+
+    left: 50%;
+    top: 68%;
+
+    transform:
+        translateX(-50%)
+        translateY(25px);
+
+    color: white;
+
+    font-size: clamp(
+        25px,
+        6vw,
+        55px
+    );
+
+    font-weight: 700;
+
+    letter-spacing: 7px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    text-shadow:
+
+        0 0 8px #fff,
+        0 0 20px #ff3d78,
+        0 0 40px #ff1744;
+
+    animation:
+        textAppear 2s
+        ease forwards;
+
+    animation-delay: 3.5s;
+}
+
+.subtitle {
+
+    position: absolute;
+
+    left: 50%;
+    top: 75%;
+
+    transform:
+        translateX(-50%)
+        translateY(15px);
+
+    width: 90%;
+
+    text-align: center;
+
+    color: #ff9fbd;
+
+    font-size: clamp(
+        12px,
+        3vw,
+        17px
+    );
+
+    letter-spacing: 2px;
+
+    opacity: 0;
+
+    animation:
+        subtitleAppear 2s
+        ease forwards;
+
+    animation-delay: 5s;
+}
+
+@keyframes textAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(-50%)
+            translateY(25px);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(-50%)
+            translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes subtitleAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(-50%)
+            translateY(15px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(-50%)
+            translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ----------------------------------
+   TOP HEART
+---------------------------------- */
+
+.small-heart {
+
+    position: absolute;
+
+    left: 50%;
+    top: 10%;
+
+    transform: translateX(-50%);
+
+    color: #ff4f91;
+
+    font-size: 35px;
+
+    text-shadow:
+        0 0 10px #ff1744,
+        0 0 30px #ff1744;
+
+    animation:
+        smallHeart 1.8s
+        infinite
+        ease-in-out;
+}
+
+@keyframes smallHeart {
+
+    0%,100% {
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            scale(1.3);
+    }
+}
+
+/* ----------------------------------
+   VIGNETTE
+---------------------------------- */
+
+.vignette {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 40%,
+            rgba(0,0,0,.65) 100%
+        );
+}
+
+/* ----------------------------------
+   MOBILE
+---------------------------------- */
+
+@media(max-width:600px) {
+
+    .heart-container {
+        transform:
+            translate(-50%, -50%)
+            scale(.78);
+    }
+
+    .title {
+        top: 67%;
+        letter-spacing: 4px;
+    }
+
+    .subtitle {
+        top: 75%;
+        padding: 0 15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="glow"></div>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="small-heart">
+        ♡
+    </div>
+
+    <div class="heart-container">
+
+        <div class="heart"></div>
+
+        <div class="heart-outline"></div>
+
+    </div>
+
+    <div class="title">
+        SLOW HEART
+    </div>
+
+    <div class="subtitle">
+        A little heartbeat... just for you ❤️
+    </div>
+
+    <div class="vignette"></div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   CANVAS PARTICLE SYSTEM
+========================================== */
+
+const canvas =
+    document.getElementById("canvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+let W;
+let H;
+
+function resize() {
+
+    W = canvas.width =
+        window.innerWidth *
+        devicePixelRatio;
+
+    H = canvas.height =
+        window.innerHeight *
+        devicePixelRatio;
